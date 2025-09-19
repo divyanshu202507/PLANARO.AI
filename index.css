@@ -1,0 +1,214 @@
+.container1 {
+    background: linear-gradient(90deg, #a3d8f4, #cfe9f7);
+    /* Light blue gradient */
+    height: 70px;
+    width: 100%;
+    margin: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for separation */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 70px;
+    padding: 0 30px;
+    font-family: 'Zalando Sans Expanded', sans-serif;
+    font-weight: 600;
+    gap: 30px;
+    /* Uniform space between all flex items */
+    flex-wrap: nowrap;
+    color: #2c3e50;
+    /* Dark slate blue for contrast */
+}
+
+.profilepic {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 12px;
+    box-shadow: 0 0 6px rgba(44, 62, 80, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+.profilepic:hover {
+    box-shadow: 0 0 14px #3498db;
+}
+
+#websitename {
+    font-size: 40px;
+    font-weight: 900;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    margin-right: 30%;
+    /* Clear space to the right */
+    white-space: nowrap;
+    color: #1a1a1a;
+    /* Dark for better readability */
+}
+
+.call-container {
+    margin-right: 8vw;
+    /* Push to the far right */
+    display: flex;
+    align-items: center;
+    color: #2c3e50;
+}
+
+.clock {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-image: url("call.png");
+    /* Use a dark icon version */
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 12px;
+    box-shadow: 0 0 6px rgba(44, 62, 80, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+.call-container:hover .clock {
+    box-shadow: 0 0 14px #3498db;
+    /* Glow on hover */
+}
+
+.call-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.call-me {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 1px;
+    opacity: 0.85;
+}
+
+.phone-number {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 2px;
+}
+
+
+.icon-cont {
+    width: 20vw;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.ig {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: url("instagram-vector-logo-icon-social-media-logotype_901408-392.jpg");
+    background-size: contain;
+    overflow: hidden;
+    box-shadow: 0 0 6px rgba(44, 62, 80, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+.ig:hover {
+    box-shadow: 0 0 14px #3498db;
+}
+
+.fb {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: url("social-media-logo-design_23-2151296987.jpg");
+    background-size: contain;
+    overflow: hidden;
+    box-shadow: 0 0 6px rgba(44, 62, 80, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+.fb:hover {
+    box-shadow: 0 0 14px #3498db;
+}
+
+
+
+
+.tw {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: url("images\ \(1\).png");
+    background-size: contain;
+    overflow: hidden;
+    object-position: center;
+    box-shadow: 0 0 6px rgba(44, 62, 80, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+.tw:hover {
+    box-shadow: 0 0 14px #3498db;
+}
+
+.ch {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: url("Google_Chrome_icon_\(February_2022\).svg.webp");
+    background-size: contain;
+    overflow: hidden;
+    box-shadow: 0 0 6px rgba(44, 62, 80, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+.ch:hover {
+    box-shadow: 0 0 14px #3498db;
+}
+
+.navbar {
+
+    background: linear-gradient(90deg, #a3d8f4, #cfe9f7);
+    display: flex;
+    justify-content: center;
+    margin-top: 0%;
+    padding-top: 2vh;
+    padding-bottom: 3vh;
+
+}
+
+.smallcon {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 80vw;
+    height: 10vh;
+    background-color: white;
+    opacity: 0.6;
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
+    filter: blur(0.2px);
+
+
+}
+
+.nav-links {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 450;
+    text-shadow: 2px 0px 0px white;
+}
+
+.nav-links:hover{
+    color: #3498db;
+}
