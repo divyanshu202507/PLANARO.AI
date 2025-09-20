@@ -1,7 +1,7 @@
 .container1 {
     background: linear-gradient(90deg, #a3d8f4, #cfe9f7);
     /* Light blue gradient */
-    height: auto;
+
     width: 100%;
     margin: 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -10,6 +10,7 @@
     top: 0;
     z-index: 100;
 }
+
 
 a {
     text-decoration: none;
@@ -253,7 +254,7 @@ a {
     height: 43px;
     width: 43px;
     border-radius: 50%;
-    object-fit:contain;
+    object-fit: contain;
     margin-top: 0px;
     background-size: contain;
     margin-bottom: 4px;
@@ -271,14 +272,14 @@ a {
 
 }
 
-.continuebutt{
+.continuebutt {
     display: flex;
     align-items: center;
     justify-content: center;
 
 }
 
-.continuebutt button{
+.continuebutt button {
     border: 1.5px solid wheat;
     height: 7vh;
     width: 15vw;
@@ -336,6 +337,7 @@ a {
     padding-bottom: 25px;
     align-items: center;
     justify-content: space-evenly;
+    margin-bottom: 25px;
 }
 
 .box p {
@@ -399,3 +401,65 @@ h6 {
     background-size: contain;
 }
 
+.endcon {
+    height: 30vh;
+    width: 100%;
+    background-color: deepskyblue;
+
+}
+
+.steps h1 {
+
+    color: black;
+    margin-top: 5px;
+}
+
+
+.steps-section {
+    background-color: #f5fbfd;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.steps-heading {
+    font-size: 22px;
+    font-weight: 800;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-family: 'Zalando Sans Expanded', sans-serif;
+}
+
+.steps-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.step {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #2cb1c3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.arrow {
+    font-size: 30px;
+    color: #2cb1c3;
+    font-weight: bold;
+    opacity: 0.6;
+}
+.steps-section{
+    position: relative;
+    bottom: 0px;
+}
