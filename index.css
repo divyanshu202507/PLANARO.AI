@@ -282,12 +282,26 @@ a {
 .continuebutt button {
     border: 1.5px solid wheat;
     height: 7vh;
-    width: 15vw;
+    width: 20vw;
     font-size: 15px;
     font-weight: 800;
+
     border-radius: 15px;
     background-color: white;
     margin-left: 18vw;
+    backdrop-filter: blur(2px);
+    background-color: white;
+    opacity: 0.7;
+}
+
+.continuebutt button:hover {
+    box-shadow: 0 0 14px #3498db;
+}
+
+.continuebutt a {
+  color: black;
+    font-size: 17px;
+
 }
 
 .middle1 {
@@ -459,7 +473,8 @@ h6 {
     font-weight: bold;
     opacity: 0.6;
 }
-.steps-section{
+
+.steps-section {
     position: relative;
     bottom: 0px;
 }
