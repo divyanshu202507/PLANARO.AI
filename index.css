@@ -1,7 +1,7 @@
 .container1 {
     background: linear-gradient(90deg, #a3d8f4, #cfe9f7);
     /* Light blue gradient */
-    height: 70px;
+    height: auto;
     width: 100%;
     margin: 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -236,7 +236,6 @@ a {
     font-weight: 900;
     font-family: "Zalando Sans Expanded", sans-serif;
     color: white
-
 }
 
 .line2 {
@@ -248,7 +247,155 @@ a {
 
 }
 
-.line3{
+
+.i1 {
+    background-image: url("opti.jpg");
+    height: 43px;
+    width: 43px;
+    border-radius: 50%;
+    object-fit:contain;
+    margin-top: 0px;
+    background-size: contain;
+    margin-bottom: 4px;
+}
+
+.line3 {
     font-size: 15px;
     padding-top: 10px;
 }
+
+.container2 {
+    background-color: lightcyan;
+    width: 100%;
+    height: auto;
+
+}
+
+.continuebutt{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.continuebutt button{
+    border: 1.5px solid wheat;
+    height: 7vh;
+    width: 15vw;
+    font-size: 15px;
+    font-weight: 800;
+    border-radius: 15px;
+    background-color: white;
+    margin-left: 18vw;
+}
+
+.middle1 {
+    height: 10vh;
+    background-color: lightcyan;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+
+}
+
+.middle1 h3 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.why {
+    display: inline;
+}
+
+.box {
+    height: 28vh;
+    border: 1px solid black;
+    width: 12vw;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    opacity: 0.8;
+
+}
+
+.box:hover {
+    transform: scale(1.06);
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 14px #3498db;
+
+}
+
+.boxcontainer {
+    height: auto;
+    width: 100%;
+    display: flex;
+    padding-bottom: 25px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.box p {
+    font-size: 11px;
+    margin-left: 5px;
+    text-align: center;
+    font-weight: 500;
+}
+
+
+.box per {
+    font-weight: 900;
+    font-size: 12px;
+
+}
+
+h6 {
+    padding: 0px;
+    margin: 4px;
+    text-align: center;
+}
+
+
+.i2 {
+    background-image: url("time.jpg");
+    height: 43px;
+    width: 43px;
+    border-radius: 50%;
+    margin-top: 0px;
+    background-size: contain;
+    margin-bottom: 4px;
+}
+
+.i3 {
+    background-image: url("cos.jpg");
+    height: 43px;
+    width: 43px;
+    border-radius: 50%;
+    margin-top: 0px;
+    background-size: contain;
+    margin-bottom: 4px;
+}
+
+.i4 {
+    background-image: url("error.jpg");
+    height: 43px;
+    width: 43px;
+    border-radius: 50%;
+    margin-top: 0px;
+    margin-bottom: 4px;
+    background-size: contain;
+}
+
+.i5 {
+    background-image: url("scala.jpg");
+    height: 43px;
+    width: 43px;
+    border-radius: 50%;
+    margin-top: 0px;
+    margin-bottom: 4px;
+    background-size: contain;
+}
+
