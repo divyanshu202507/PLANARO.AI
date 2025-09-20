@@ -11,6 +11,9 @@
     z-index: 100;
 }
 
+html{
+    scroll-behavior: smooth;
+}
 
 a {
     text-decoration: none;
@@ -658,7 +661,7 @@ h6 {
 .testimonial-card {
     background: #fff;
     border-radius: 14px;
-    padding: 18px 28px;
+    padding: 15px 15px;
     min-width: 230px;
     display: flex;
     flex-direction: column;
@@ -684,4 +687,84 @@ h6 {
     color: #697e90;
     font-size: 14px;
     line-height: 21px;
+}
+
+.subscription {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.sus-outer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+
+}
+
+.sus-outer div {
+    margin-top: 10px;
+   margin-left: 50px;
+   margin-right: 50px;
+   margin-bottom: 15px;
+    border: 1.5px solid white;
+    height: 320px;
+    border-radius: 12px;
+   
+    width: 15vw;
+    text-align: center;
+   background-color: bisque;
+}
+
+.sus-outer div:hover {
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 14px #3498db;
+
+}
+
+.price {
+    font-size: 15px;
+    font-weight: 900;
+    margin-top: 0px;
+}
+
+.free {
+    background-color: white;
+    opacity: 0.7;
+}
+
+.regular {
+    background-color: white;
+    opacity: 0.7;
+}
+
+.price-tag{
+    margin-bottom: 2px;
+}
+.premium {
+    background-color: white;
+    opacity: 0.7;
+}
+
+.material-symbols-outlined{
+    padding-top: 5px;
+}
+
+.content{
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.onetime{
+height: 5vh;
+border-radius: 15px;
+}
+
+.sus{
+    height: 6vh;
+    border-radius: 10px;
+   
 }
