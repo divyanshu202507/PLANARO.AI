@@ -205,10 +205,50 @@ a {
 .nav-links {
     font-size: 20px;
     color: #1a1a1a;
-    font-weight: 450;
+    font-weight: 470;
+
     text-shadow: 2px 0px 0px white;
 }
 
-.nav-links:hover{
+.nav-links:hover {
     color: #3498db;
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.body1 {
+    background: linear-gradient(90deg, #a3d8f4, #cfe9f7);
+    height: 40vh;
+    margin: 0%;
+    padding: 0px;
+}
+
+.best {
+    width: 40vw;
+    height: 20vh;
+    margin-left: 10vw;
+    padding-top: 8vh;
+
+}
+
+.line1 {
+    font-size: 60px;
+    font-weight: 900;
+    font-family: "Zalando Sans Expanded", sans-serif;
+    color: white
+
+}
+
+.line2 {
+    font-size: 30px;
+    font-weight: 800;
+    font-family: "Zalando Sans Expanded", sans-serif;
+    color: white;
+    line-height: 2vh;
+
+}
+
+.line3{
+    font-size: 15px;
+    padding-top: 10px;
 }
