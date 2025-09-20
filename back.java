@@ -1,83 +1,156 @@
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Data;
+
+import java.util.List;
+
+@Data
 @Document(collection = "students")
 public class Student {
     @Id
     private String id;
     private String rollNumber;
-    private String name;
-    private String course;
-    private int numMajorSubjects;
-    private int numMinorSubjects;
+    private String studentName;
+    private String courseSubject;
+    private int numberOfMajorSubjects;
+    private int numberOfMinorSubjects;
     private List<String> optionalSubjects;
     private List<String> workingDays;
-    private int classDuration;
-    private int lunchBreak;
-    private Map<String, DaySchedule> timetable; // per-day timings
 }
-public class DaySchedule {
-    private String startTime; // "09:00"
-    private String endTime;   // "16:00"
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalTime;
+import java.util.Map;
+
+@Data
+@Document(collection = "timetable_forms")
+public class TimetableForm {
+    @Id
+    private String id;
+    private int durationOfOneClass;
+    private int durationOfLunchBreak;
+    private Map<String, TimeSlot> timetable;
+
+    @Data
+    public static class TimeSlot {
+        private LocalTime startTime;
+        private LocalTime endTime;
+    }
 }
+import lombok.Data;
+
+import java.time.LocalTime;
+
+@Data
+public class TimetableEntry {
+    private String day;
+    private String subject;
+    private LocalTime startTime;
+    private LocalTime endTime;
+    private String room;
+    // You can add more fields like faculty, type (theory/practical)
+}
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
 @Repository
 public interface StudentRepository extends MongoRepository<Student, String> {
-    Student findByRollNumber(String rollNumber);
 }
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 @Service
-public class TimetableGenerator {
+public class TimetableService {
 
-    public Map<String, List<String>> generateTimetable(Student student) {
-        Map<String, List<String>> timetable = new HashMap<>();
+    @Autowired
+    private StudentRepository studentRepository;
 
-        int classDuration = student.getClassDuration();
-        int lunchBreak = student.getLunchBreak();
+    @Autowired
+    private TimetableFormRepository timetableFormRepository;
 
-        for (String day : student.getWorkingDays()) {
-            List<String> dailySchedule = new ArrayList<>();
+    public List<TimetableEntry> generateTimetable(String formId) {
+        // 1. Fetch data from MongoDB
+        TimetableForm form = timetableFormRepository.findById(formId)
+                .orElseThrow(() -> new RuntimeException("Timetable form not found"));
 
-            // Convert start-end times
-            String startTime = student.getTimetable().get(day).getStartTime();
-            String endTime = student.getTimetable().get(day).getEndTime();
-
-            LocalTime start = LocalTime.parse(startTime);
-            LocalTime end = LocalTime.parse(endTime);
-
-            List<String> subjects = new ArrayList<>();
-            subjects.addAll(Collections.nCopies(student.getNumMajorSubjects(), "Major"));
-            subjects.addAll(Collections.nCopies(student.getNumMinorSubjects(), "Minor"));
-            subjects.addAll(student.getOptionalSubjects());
-
-            int i = 0;
-            while (start.plusMinutes(classDuration).isBefore(end)) {
-                if (i == subjects.size()) i = 0; // repeat subjects if fewer than slots
-
-                String slot = start + " - " + start.plusMinutes(classDuration) + " : " + subjects.get(i);
-                dailySchedule.add(slot);
-
-                start = start.plusMinutes(classDuration);
-
-                // Lunch break check
-                if (start.equals(LocalTime.NOON)) {
-                    start = start.plusMinutes(lunchBreak);
-                }
-                i++;
+        List<Student> students = studentRepository.findAll();
+        
+        // Let's assume you have a way to get a list of all subjects, rooms, and faculty
+        // For this example, we'll use a simplified set.
+        List<String> subjects = new ArrayList<>();
+        students.forEach(s -> {
+            subjects.add(s.getCourseSubject());
+            if (s.getOptionalSubjects() != null) {
+                subjects.addAll(s.getOptionalSubjects());
             }
-            timetable.put(day, dailySchedule);
+        });
+
+        List<TimetableEntry> timetable = new ArrayList<>();
+        
+        // 2. The core generation loop
+        int subjectIndex = 0;
+        for (String day : form.getTimetable().keySet()) {
+            TimetableForm.TimeSlot dailySlot = form.getTimetable().get(day);
+            LocalTime currentTime = dailySlot.getStartTime();
+            
+            while (currentTime.isBefore(dailySlot.getEndTime())) {
+                if (subjectIndex >= subjects.size()) {
+                    break; // No more subjects to schedule
+                }
+
+                String currentSubject = subjects.get(subjectIndex);
+                LocalTime classEndTime = currentTime.plusMinutes(form.getDurationOfOneClass());
+                
+                // Simplified constraint check (you'll expand on this)
+                boolean isClash = false; 
+                // In a real system, you'd check for faculty, room, and student clashes
+                
+                if (!isClash && classEndTime.isBefore(dailySlot.getEndTime())) {
+                    TimetableEntry entry = new TimetableEntry();
+                    entry.setDay(day);
+                    entry.setSubject(currentSubject);
+                    entry.setStartTime(currentTime);
+                    entry.setEndTime(classEndTime);
+                    entry.setRoom("Room A"); // You need a mechanism to assign rooms
+                    timetable.add(entry);
+                    
+                    currentTime = classEndTime;
+                    subjectIndex++;
+                } else {
+                    // Move to the next day or handle the time slot differently
+                    break;
+                }
+                
+                // Add a lunch break if applicable
+                if (currentTime.getHour() == 13) { // Example for 1 PM lunch
+                    currentTime = currentTime.plusMinutes(form.getDurationOfLunchBreak());
+                }
+            }
         }
+
         return timetable;
     }
 }
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/timetable")
+@RequestMapping("/api/v1/timetables")
+@CrossOrigin(origins = "http://localhost:3000") // Adjust this to your frontend URL
 public class TimetableController {
 
     @Autowired
-    private StudentRepository studentRepo;
+    private TimetableService timetableService;
 
-    @Autowired
-    private TimetableGenerator generator;
-
-    @GetMapping("/{rollNumber}")
-    public Map<String, List<String>> getTimetable(@PathVariable String rollNumber) {
-        Student student = studentRepo.findByRollNumber(rollNumber);
-        return generator.generateTimetable(student);
+    @GetMapping("/generate/{formId}")
+    public List<TimetableEntry> generateTimetable(@PathVariable String formId) {
+        return timetableService.generateTimetable(formId);
     }
 }
